@@ -1,0 +1,9 @@
+# Idea
+.idea/
+*.iml
+
+# Stack
+.stack-work/
+stack.yaml.lock
+
+algorithms.cabal
