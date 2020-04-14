@@ -13,3 +13,12 @@ pairs xs = zip xs (tail xs)
 -- | Returns true if the list is sorted.
 sorted :: Ord a => [a] -> Bool
 sorted xs = and [u <= v | (u, v) <- pairs xs]
+
+-- | The Euclidean algorithm calculates the greatest common divisor(GCD) of two natural numbers a and b.
+euclid :: Integral n => n -> n -> n
+euclid a b =
+  if remainder == 0
+    then b
+    else euclid b remainder
+  where
+    remainder = a `mod` b
