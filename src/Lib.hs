@@ -2,5 +2,6 @@ module Lib
     ( someFunc
     ) where
 
+-- | Example function.
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = putStrLn "Example func"
