@@ -22,3 +22,15 @@ euclid a b =
     else euclid b remainder
   where
     remainder = a `mod` b
+
+-- | Inserts data in a correct order into the sorted list.
+insert :: Ord a => a -> [a] -> [a]
+insert x [] = [x]
+insert x (y:ys)
+  | x <= y = x : y : ys
+  | otherwise = y : insert x ys
+
+-- | Insertion sort.
+isort :: Ord a => [a] -> [a]
+isort []     = []
+isort (x:xs) = insert x (isort xs)
