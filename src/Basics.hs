@@ -34,3 +34,11 @@ insert x (y:ys)
 isort :: Ord a => [a] -> [a]
 isort []     = []
 isort (x:xs) = insert x (isort xs)
+
+-- | Quick sort.
+qsort :: Ord a => [a] -> [a]
+qsort [] = []
+qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+  where
+    smaller = [s | s <- xs, s <= x]
+    larger = [l | l <- xs, l > x]
