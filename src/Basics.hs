@@ -42,3 +42,27 @@ qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
   where
     smaller = [s | s <- xs, s <= x]
     larger = [l | l <- xs, l > x]
+
+-- | Creates a pair of two halves from a list.
+halve :: [a] -> ([a], [a])
+halve xs = (take half xs, drop half xs)
+  where
+    half = length xs `div` 2
+
+-- | Merges two sorted lists into one.
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] [] = []
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys) =
+  if x <= y
+    then x : merge xs (y : ys)
+    else y : merge (x : xs) ys
+
+-- | Merge sort.
+msort :: Ord a => [a] -> [a]
+msort [] = []
+msort [x] = [x]
+msort xs = merge (msort (fst halves)) (msort (snd halves))
+  where
+    halves = halve xs
